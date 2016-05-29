@@ -11,7 +11,7 @@ module.exports = [
       Dinosaur.find({}, (err, dinosaur) => {
         if (err) {
           console.log('Error', err);
-          return reply('Error: extinction!!!!!!!');
+          return reply('Error: extinction!!!!!!! (GET error)');
         }
         return reply({
           statusCode: 200,
@@ -21,6 +21,23 @@ module.exports = [
       });
     }
   },
+  {
+    method: 'POST',
+    path: '/dinosaur',
+    handler: function(request, reply) {
+      let newDinosaur = new Dinosaur(request.payload);
+      newDinosaur.save((err) => {
+        if (err) {
+          console.log('Error', err);
+          return reply('You can\'t play God (POST error)!')
+        }
+        return reply({
+          statusCode: 200,
+          message: 'We\'ve done it!!!!! Nature will find a way!'
+        })
+      })
+    }
+  }
   {
     method: '*',
     path: '/{p*}',
