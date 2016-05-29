@@ -1,6 +1,6 @@
 'use strict';
 
-const Resource = require('../schema/resource');
+const Dinosaur = require('../schema/dinosaur');
 const notFound = require('./not-found');
 
 module.exports = [{
