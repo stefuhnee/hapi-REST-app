@@ -29,15 +29,15 @@ module.exports = [
       newDinosaur.save((err) => {
         if (err) {
           console.log('Error', err);
-          return reply('You can\'t play God (POST error)!')
+          return reply('You can\'t play God (POST error)!');
         }
         return reply({
           statusCode: 200,
           message: 'We\'ve done it!!!!! Nature will find a way!'
-        })
-      })
+        });
+      });
     }
-  }
+  },
   {
     method: '*',
     path: '/{p*}',
