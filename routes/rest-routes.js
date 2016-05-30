@@ -43,7 +43,7 @@ module.exports = [
     method: 'PUT',
     path: '/dinosaur',
     handler: function(request, reply) {
-      let _id = request.params.id;
+      let _id = request.payload._id;
       if (!request.payload) return reply('Bad request').code(400);
       Dinosaur.findOneAndUpdate({_id}, request.payload, (err) => {
         if (err) {
