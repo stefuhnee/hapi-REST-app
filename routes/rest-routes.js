@@ -39,6 +39,40 @@ module.exports = [
     }
   },
   {
+    method: 'PUT',
+    path: '/dinosaur',
+    handler: function(request, reply) {
+      let _id = request.params.id;
+      Dinosaur.findOneAndUpdate({_id}, request.payload, (err) => {
+        if (err) {
+          console.log('Error', err);
+          return reply('UNSTABLE MUTATION! (PUT Error)');
+        }
+        return reply({
+          statusCode: 200,
+          message: 'Mutation successful! BETTER, FASTER, STRONGER!'
+        });
+      });
+    }
+  },
+  {
+    method: 'DELETE',
+    path: '/dinosaur/{id}',
+    handler: function(request, reply) {
+      let _id = request.params.id;
+      Dinosaur.remove({_id}, (err) => {
+        if (err) {
+          console.log('Error', err);
+          return reply('THERE IS NO ESCAPE (Delete Error)!');
+        }
+        return reply({
+          statusCode: 200,
+          message: 'You\'re safe..... FOR NOW!'
+        });
+      });
+    }
+  },
+  {
     method: '*',
     path: '/{p*}',
     handler: notFound
