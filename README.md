@@ -85,7 +85,7 @@ $ curl -i -X POST -H "Content-Type:application/json" localhost:3000/dinosaur -d 
 
 #### PUT request:
 
-Updates a dinosaur with your desired mutation (or creates a new dinosaur!). You must provide both the \_id string (found using a GET request) and the dinosaur's properties within the request body to update a dinosaur.
+Updates a dinosaur with your desired mutation. You must provide both the \_id string (found using a GET request) and the dinosaur's properties within the request body to update a dinosaur.
 
 ```sh
 $ curl -i -X PUT -H "Content-Type:application/json" localhost:3000/dinosaur -d '{"_id":"574ca2b0d777903770e00981", "name":"slug", "carnivore":true, "speed":"superslug", "defensePower":2, "attackPower":5000}'
