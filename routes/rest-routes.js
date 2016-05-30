@@ -40,7 +40,7 @@ module.exports = [
   },
   {
     method: 'PUT',
-    path: '/dinosaur/{id}',
+    path: '/dinosaur',
     handler: function(request, reply) {
       let _id = request.params.id;
       Dinosaur.findOneAndUpdate({_id}, request.payload, (err) => {
