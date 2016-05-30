@@ -41,7 +41,7 @@ describe('Dinosaur tests', () => {
       if (err) return;
       expect(err).to.eql(null);
       expect(res).to.have.status(200);
-      expect(res.body.message).to.eql('The dinosaurs are roaming again!');
+      expect(res.body.message).to.eql('Your scientists were so preoccupied with whether they could, they didn\'t stop to think if they should.');
       expect(Array.isArray(res.body.dinosaur)).to.eql(true);
       done();
     });
@@ -102,7 +102,7 @@ describe('Dinosaur tests', () => {
       .end((err, res) => {
         expect(err).to.eql(null);
         expect(res).to.have.status(200);
-        expect(JSON.parse(res.text).message).to.eql('You\'re safe..... FOR NOW!');
+        expect(JSON.parse(res.text).message).to.eql('If you gotta go, you gotta go.');
         done();
       });
     });

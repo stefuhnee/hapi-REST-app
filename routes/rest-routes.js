@@ -14,7 +14,7 @@ module.exports = [
         }
         return reply({
           statusCode: 200,
-          message: 'The dinosaurs are roaming again!',
+          message: 'Your scientists were so preoccupied with whether they could, they didn\'t stop to think if they should.',
           dinosaur: dinosaur
         });
       });
@@ -70,7 +70,7 @@ module.exports = [
         }
         return reply({
           statusCode: 200,
-          message: 'You\'re safe..... FOR NOW!'
+          message: 'If you gotta go, you gotta go.'
         });
       });
     }
