@@ -1,7 +1,6 @@
 'use strict';
 
 const Dinosaur = require('../schema/dinosaur');
-const notFound = require('./not-found');
 
 module.exports = [
   {
@@ -15,7 +14,7 @@ module.exports = [
         }
         return reply({
           statusCode: 200,
-          message: 'The dinosaurs are roaming again!',
+          message: 'Your scientists were so preoccupied with whether they could, they didn\'t stop to think if they should.',
           dinosaur: dinosaur
         });
       });
@@ -25,15 +24,17 @@ module.exports = [
     method: 'POST',
     path: '/dinosaur',
     handler: function(request, reply) {
+      if (!request.payload) return reply('Bad request').code(400);
       let newDinosaur = new Dinosaur(request.payload);
-      newDinosaur.save((err) => {
+      newDinosaur.save((err, dinosaur) => {
         if (err) {
           console.log('Error', err);
           return reply('You can\'t play God (POST error)!');
         }
         return reply({
           statusCode: 200,
-          message: 'We\'ve done it!!!!! Nature will find a way!'
+          message: 'We\'ve done it!!!!! Life, uh, finds a way!',
+          dinosaur: dinosaur
         });
       });
     }
@@ -43,6 +44,7 @@ module.exports = [
     path: '/dinosaur',
     handler: function(request, reply) {
       let _id = request.params.id;
+      if (!request.payload) return reply('Bad request').code(400);
       Dinosaur.findOneAndUpdate({_id}, request.payload, (err) => {
         if (err) {
           console.log('Error', err);
@@ -50,7 +52,8 @@ module.exports = [
         }
         return reply({
           statusCode: 200,
-          message: 'Mutation successful! BETTER, FASTER, STRONGER!'
+          message: 'Mutation successful! BETTER, FASTER, STRONGER!',
+          dinosaur: request.payload
         });
       });
     }
@@ -60,14 +63,14 @@ module.exports = [
     path: '/dinosaur/{id}',
     handler: function(request, reply) {
       let _id = request.params.id;
-      Dinosaur.remove({_id}, (err) => {
+      Dinosaur.remove({_id}, (err, dinosaur) => {
         if (err) {
           console.log('Error', err);
           return reply('THERE IS NO ESCAPE (Delete Error)!');
         }
         return reply({
           statusCode: 200,
-          message: 'You\'re safe..... FOR NOW!'
+          message: 'If you gotta go, you gotta go.'
         });
       });
     }
@@ -75,5 +78,7 @@ module.exports = [
   {
     method: '*',
     path: '/{p*}',
-    handler: notFound
+    handler: function(request, reply) {
+      return reply('Page not found.').code(404);
+    }
   }];
