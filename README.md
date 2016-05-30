@@ -102,7 +102,7 @@ $ curl -i -X DELETE localhost:3000/dinosaur/574ca2b0d777903770e00981
 
 ## Tests
 
-Run tests from the project route one of two ways:
+Run tests from the project root one of two ways:
 
 ##### Using mocha
 
