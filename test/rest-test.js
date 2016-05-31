@@ -102,7 +102,7 @@ describe('Dinosaur tests', () => {
       .end((err, res) => {
         expect(err).to.eql(null);
         expect(res).to.have.status(200);
-        expect(JSON.parse(res.text).message).to.eql('If you gotta go, you gotta go.');
+        expect(res.body.message).to.eql('If you gotta go, you gotta go.');
         done();
       });
     });
